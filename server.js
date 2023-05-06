@@ -11,7 +11,7 @@ import __dirname from 'path';
 import path from 'path';
 
 const app = express();
-const port = process.env.port || 9090;
+const port = process.env.port || 3000;
 const databaseName ='transportyniAndroid';
 
 mongoose.set('debug', true);
