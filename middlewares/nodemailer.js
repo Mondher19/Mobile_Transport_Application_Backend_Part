@@ -10,7 +10,7 @@ export async function sendConfirmationEmail(email, activationCode) {
   secure: true,
   auth: {
     user: 'api',
-    pass: ''b6466441c473c50bd104fcacaea2e8f1',
+    pass: 'b6466441c473c50bd104fcacaea2e8f1',
   },
     }));
 
