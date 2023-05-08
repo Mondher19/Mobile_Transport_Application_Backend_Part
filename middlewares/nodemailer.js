@@ -1,4 +1,4 @@
-import nodemailer from 'nodemailer';
+import nodemailer from "nodemailer";
 import smtpTransport from 'nodemailer-smtp-transport';
 
 export async function sendConfirmationEmail(email, activationCode) {
@@ -29,3 +29,5 @@ export async function sendConfirmationEmail(email, activationCode) {
     console.log(error);
   }
 }
+
+export default sendConfirmationEmail;
