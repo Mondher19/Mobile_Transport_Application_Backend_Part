@@ -3,13 +3,15 @@ import smtpTransport from 'nodemailer-smtp-transport';
 
 export async function sendConfirmationEmail(email, activationCode) {
   try {
+    
     const transporter = nodemailer.createTransport(smtpTransport({
-      host: 'smtp.mailtrap.io',
-      port: 2525,
-      auth: {
-        user: 'api',
-        pass: 'b6466441c473c50bd104fcacaea2e8f1',
-      },
+  host: 'live.smtp.mailtrap.io',
+  port: 587,
+  secure: true,
+  auth: {
+    user: 'api',
+    pass: ''b6466441c473c50bd104fcacaea2e8f1',
+  },
     }));
 
     await transporter.sendMail({
