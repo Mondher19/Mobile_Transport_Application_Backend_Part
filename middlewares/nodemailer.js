@@ -1,42 +1,29 @@
-import nodemailer from "nodemailer";
-import env from 'dotenv';
+import nodemailer from 'nodemailer';
+import smtpTransport from 'nodemailer-smtp-transport';
 
-
-
-
-
-export async function  sendConfirmationEmail (email,activationCode)  {
- 
+export async function sendConfirmationEmail(email, activationCode) {
   try {
-    const transporter = nodemailer.createTransport({
-
-      service: "Gmail",
-      auth: { 
-
-        user:"mondher.benhajammar@esprit.tn",
-        pass: "213JMT5843", 
+    const transporter = nodemailer.createTransport(smtpTransport({
+      host: 'smtp.mailtrap.io',
+      port: 2525,
+      auth: {
+        user: 'api',
+        pass: 'b6466441c473c50bd104fcacaea2e8f1',
       },
-     // tls: {rejectUnauthorized: false}
- 
-    });
-    const listofnumber = "0123456789";
-    
-    await transporter.sendMail({
+    }));
 
-     from: "mondher.benhajammar@esprit.tn",
+    await transporter.sendMail({
+      from: 'live.smtp.mailtrap.io',
       to: email,
-      subject: "Please confirm your account",
-      text: "Email Confirmation " ,
-       html: `<h1> This is your code </h1>
+      subject: 'Please confirm your account',
+      html: `<h1> This is your code </h1>
         <h2>Hello Sir </h2>
         <h3> ${activationCode}</h3>`,
     });
-    
-    console.log("email sent sucessfully");
+
+    console.log('email sent successfully');
   } catch (error) {
-    console.log("email not sent");
+    console.log('email not sent');
     console.log(error);
   }
-};
-
-export default sendConfirmationEmail;
+}
