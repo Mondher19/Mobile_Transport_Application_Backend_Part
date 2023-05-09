@@ -37,7 +37,6 @@ router.put('/updateprofile/:id' ,upload.single('profilPic'),UpdateProfile);
 
 
 
-
 router.route('/status').post(IsActivated);
 router
     .route('/:id')
