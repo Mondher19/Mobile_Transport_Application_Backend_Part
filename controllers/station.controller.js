@@ -1,5 +1,5 @@
 import Station from '../modals/stations.js';
-
+import Transport from '../modals/transport.js';
 // Create a new station
 export async function createStation(req, res) {
   try {
@@ -97,11 +97,14 @@ export async function getStationsByType(req, res) {
 
 export async function getStationsByTransportId(req, res) {
   try {
-    const transportId = req.params.transportId;
-    const stations = await Station.find({ transportId });
+    const transportId = req.params.transportId.trim();
+    const stations = await Station.find({ transport: transportId });
     res.send(stations);
   } catch (err) {
     res.status(500).send(err);
   }
 }
+
+
+
 
