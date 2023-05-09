@@ -184,7 +184,9 @@ export async function UpdatePass(req,res){
     update.mobile = req.body.mobile;
   }
  
-
+  if (req.file ) {
+    update.profilPic = req.file.filename;
+  }
   try {
     const updatedUser = await user.findByIdAndUpdate(id, update, { new: true });
     res.status(200).send();
