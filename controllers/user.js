@@ -149,20 +149,21 @@ export async function resetPass(req,res){
   
 }
 
-// Update User Password
-export async function UpdatePass(req,res){
-      
-  let hashedPass = await bcrypt.hash(req.body.password, 10)
-  user.findOneAndUpdate(req.params.email,{"password": hashedPass}) .then((err,result) => {
-    if (!err) {
-    return res.status(200).send("Password Updated");
-    
+export async function UpdatePass(req, res) {
+  try {
+    const hashedPass = await bcrypt.hash(req.body.password, 10);
+    const filter = { email: req.params.email };
+    const update = { password: hashedPass };
+    const result = await user.findOneAndUpdate(filter, update);
+    if (result) {
+      return res.status(200).send("Password updated successfully.");
+    } else {
+      return res.status(404).send("User not found.");
     }
-  else{
-   console.error(err);
+  } catch (error) {
+    console.error(error);
+    return res.status(500).send("Internal server error.");
   }
-   
-  })
 }
 
   
